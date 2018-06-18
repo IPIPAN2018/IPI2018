@@ -1,0 +1,84 @@
+﻿
+
+<hr />
+
+<h1>Add new user to the database</h1>
+
+<form #f="ngForm" (ngSubmit)="submit()">
+    <div class="submit-container" [(ngModel)]="user" name="user">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="fname">Name*</label>
+                    <input type="text" class="form-control" name="fname" id="fname" placeholder="Enter First Name" required [(ngModel)]="user.name" value="{{user.name}}">
+                </div>
+                <div class="form-group">
+                    <label for="lname">Last Name*</label>
+                    <input type="text" class="form-control" name="lname" id="lname" placeholder="Enter Last Name" [(ngModel)]="user.lastName" value="{{user.lastName}}">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email*</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required="" [(ngModel)]="user.email" value="{{user.email}}">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password*</label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" required [(ngModel)]="user.password" value="{{user.password}}">
+                </div>
+                <div class="form-group">
+                    <label for="contactno">Contact No.</label>
+                    <input type="tel" class="form-control" id="contactno" name="contactno" placeholder="Enter Contact No." [(ngModel)]="user.contactNo" value="{{user.contactNo}}">
+                </div>
+
+            </div>
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-6 ">
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" class="form-control" id="city" name="city" placeholder="Enter City" [(ngModel)]="user.city" value="{{user.city}}">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="postCode">Post Code</label>
+                            <input type="text" class="form-control" id="postCode" name="postCode" placeholder="Enter Post Code" [(ngModel)]="user.postCode" value="{{user.postCode}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="street">Street</label>
+                    <input type="text" class="form-control" id="street" name="street" placeholder="Enter Street" [(ngModel)]="user.street" value="{{user.street}}">
+                </div>
+                <div class="form-group">
+                    <label for="categories">Favorites categories</label>
+                    <select id="categories" name="categories" class="contact-input form-control btn-block" [(ngModel)]="user.favouritesCategories">
+                        <optgroup label="Categories">
+                            <option value="Adventure">Adventure</option>
+                            <option value="Bibliographies">Bibliographies</option>
+                            <option value="Criminal">Criminal</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Historical">Historical</option>
+                            <option value="Horror">Horror</option>
+                            <option value="LoveStory">Love story</option>
+                            <option value="Poetry">Poetry</option>
+                            <option value="ScienceFiction">Science fiction</option>
+                        </optgroup>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="isAdmin">Is Admin</label>
+                    <input type="checkbox" id="isAdmin" name="isAdmin" [(ngModel)]="user.isAdmin" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" name="submit" id="submit" value="Submit" class="btn btn-danger pull-left" required="required">Add user</button>
+        </div>
+    </div>
+</form>
+<hr />
+
+<p>
+    {{user | json}}
+</p>

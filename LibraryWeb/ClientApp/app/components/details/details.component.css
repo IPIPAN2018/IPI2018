@@ -1,0 +1,10 @@
+﻿.list-margin{
+    margin-left:10px;
+}
+
+.list-item-margin{
+    vertical-align:top;
+    margin:5px;
+    font-size:20px;
+    display:inline-block;
+}

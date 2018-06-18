@@ -1,0 +1,72 @@
+﻿
+<hr />
+<h1>Add new book to the database</h1>
+
+<form #f="ngForm" (ngSubmit)="submit()">
+    <div class="submit-container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="book">Title*</label>
+                    <select id="book" class="form-control collapse" (change)="onBookChange()" [(ngModel)]="selectedBook" name="book" contenteditable="true">
+                        <option value=""></option>
+                        <option *ngFor="let b of books" [ngValue]="b">{{b.bookId}} - {{b.title}}</option>
+                    </select>
+                    <input type="text" class="form-control" name="bookTitle" id="bookTitle" [(ngModel)]="selectedBook.title" placeholder="Enter Title" required>
+                </div>
+                <div class="form-group">
+                    <label for="year">Year*</label>
+                    <input type="text" class="form-control" name="year" id="year" placeholder="Enter Year" [(ngModel)]="selectedBook.year" value="{{selectedBook.year}}">
+                </div>
+                <fieldset class="form-group">
+                    <label>Media*</label>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="optionsMedia" id="dvd" value="DVD" [(ngModel)]="selectedBook.media">
+                            DVD
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="optionsMedia" id="CD" value="CD" [(ngModel)]="selectedBook.media">
+                            CD
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="optionsMedia" id="book" value="Book" checked="" [(ngModel)]="selectedBook.media">
+                            Book
+                        </label>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group" *ngIf="selectedBook.media === 'Book'">
+                    <label for="authorName">Author Name</label>
+                    <input type="text" class="form-control" id="authorName" name="authorName" placeholder="Enter Author Name" [(ngModel)]="selectedBook.author" value="{{selectedBook.author}}">
+                </div>
+                <div class="form-group" *ngIf="selectedBook.media === 'DVD'">
+                    <label for="directorName">Director Name</label>
+                    <input type="text" class="form-control" id="directorName" name="directorName" placeholder="Enter Director Name" [(ngModel)]="selectedBook.author" value="{{selectedBook.author}}">
+                </div>
+                <div class="form-group" *ngIf="selectedBook.media === 'CD'">
+                    <label for="performerName">Performer Name</label>
+                    <input type="text" class="form-control" id="performerName" name="performerName" placeholder="Enter Performer Name" [(ngModel)]="selectedBook.author" value="{{selectedBook.author}}">
+                </div>
+                <div class="form-group">
+                    <label for="cover">Cover</label>
+                    <input type="file" class="form-control" id="cover" name="cover" placeholder="Select cover">
+                </div>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" name="submit" id="submit" value="Submit" class="btn btn-danger pull-left" required="required">Add/Update book</button>
+        </div>
+    </div>
+</form>
+<hr />
+
+<p>
+    {{selectedBook | json}}
+</p>

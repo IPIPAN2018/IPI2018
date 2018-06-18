@@ -1,0 +1,56 @@
+﻿<h1>Library</h1>
+
+<div class="row">
+    <div class="col-sm-3">
+        <span class="glyphicon glyphicon-search pull-right  "> </span>
+        <input type="text" class="form-control searchBox" id="search" name="search" placeholder="Search for..." [(ngModel)]="filterValue"  (change)="onFilterChange()">
+    </div>
+    <div class="col-sm-3">
+        <ul class="list-unstyled">
+            <li>
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="lookIn" id="title" value="title" checked="" (change)="onFilterChange()" [(ngModel)]="filter.type">
+                    Title
+                </label>
+            </li>
+            <li>
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="lookIn" id="author" value="author" (change)="onFilterChange()" [(ngModel)]="filter.type">
+                    Author / Director / Performer
+                </label>
+            </li>
+            <li>
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="lookIn" id="media" value="media" (change)="onFilterChange()" [(ngModel)]="filter.type">
+                    Media
+                </label>
+            </li>
+        </ul>
+    </div>
+</div>
+<p *ngIf="!books"><em>Loading...</em></p>
+
+<table class='table' *ngIf="books">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Media</th>
+            <th>Author/Director/Performer</th>
+            <th>State</th>
+            <th>Details</th>
+            <th>Borrow/Return</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let book of books">
+            <td>{{ book.title }}</td>
+            <td>{{ book.year }}</td>
+            <td>{{ book.media }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.state }}</td>
+            <td><button class="btn-info  btn-danger" (click)="onShowDetails(book)">Show</button></td>
+            <td><button class="btn-info  btn-danger" (click)="changeState(book)"><span *ngIf="book.state">Borrow</span><span *ngIf="!book.state">Return</span></button></td>
+        </tr>
+    </tbody>
+</table>
