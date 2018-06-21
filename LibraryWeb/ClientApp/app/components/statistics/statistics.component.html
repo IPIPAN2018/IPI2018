@@ -23,10 +23,18 @@
         <li><strong>Number of available elements:</strong> {{ available?.length }} </li>
         <li><strong>Number of not available elements:</strong> {{notavailable?.length}} </li>
     </ul>
-
     <h4>Not available positions:</h4>
     <ul>
-        <li *ngFor="let na of notavailable"><strong>Title: </strong><i>{{na.title}}</i> - date: </li>
+        <li *ngFor="let na of notavailable"><strong>Title: </strong><i>{{na.title}}</i></li>
+    </ul>
+
+    <h4>Rented by:</h4>
+    <ul>
+        <li *ngFor="let na of users"><strong>User: </strong><i>{{na.name}} {{na.lastName}}</i> 
+        <ul>
+            <li *ngFor="let book of na.rentedBooks">{{book.title}} - {{book?.rentedWhen}} </li>
+        </ul>
+        </li>
     </ul>
 </div>
 

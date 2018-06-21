@@ -10,6 +10,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="7.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="4.0.0" />
+    <PackageReference Include="ChartJS" Version="18.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
   </ItemGroup>
@@ -32,6 +33,8 @@
     <Compile Remove="Migrations\20180617170126_ApplyConstraints.Designer.cs" />
     <Compile Remove="Migrations\20180617170600_ApplyConstraints2.cs" />
     <Compile Remove="Migrations\20180617170600_ApplyConstraints2.Designer.cs" />
+    <Compile Remove="Migrations\20180621181844_Date.cs" />
+    <Compile Remove="Migrations\20180621181844_Date.Designer.cs" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

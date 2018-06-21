@@ -19,7 +19,7 @@ namespace LibraryWeb.Migrations
 
             modelBuilder.Entity("LibraryWeb.Model.Book", b =>
                 {
-                    b.Property<long>("BookId")
+                    b.Property<int>("BookId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Author");
@@ -34,6 +34,8 @@ namespace LibraryWeb.Migrations
 
                     b.Property<string>("Year");
 
+                    b.Property<string>("RentedWhen");
+
                     b.HasKey("BookId");
 
                     b.HasIndex("UserId");
@@ -43,7 +45,7 @@ namespace LibraryWeb.Migrations
 
             modelBuilder.Entity("LibraryWeb.Model.User", b =>
                 {
-                    b.Property<long>("UserId")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("City");

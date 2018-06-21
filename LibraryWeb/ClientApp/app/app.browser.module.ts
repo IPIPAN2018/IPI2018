@@ -4,6 +4,7 @@ import { AppModuleShared } from './app.shared.module';
 import { AppComponent } from './components/app/app.component';
 import { BookService } from './components/app/services/book.service';
 import { UserService } from './components/app/services/user.service';
+import { DatePipe } from '@angular/common'
 
 @NgModule({
     bootstrap: [ AppComponent ],
@@ -14,8 +15,9 @@ import { UserService } from './components/app/services/user.service';
     providers: [
         { provide: 'BASE_URL', useFactory: getBaseUrl },
         BookService,
-        UserService
-    ]
+        UserService,
+        DatePipe
+    ] 
 })
 export class AppModule {
 }

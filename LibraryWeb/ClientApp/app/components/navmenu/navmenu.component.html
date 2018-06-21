@@ -10,16 +10,21 @@
             <a class='navbar-brand' [routerLink]="['/home']">LibraryWeb</a>
         </div>
         <div class='clearfix'></div>
-        <div class='navbar-collapse collapse'>
+        <div class='navbar-collapse collapse' [(ngModel)]="logged">
             <ul class='nav navbar-nav'>
                 <li [routerLinkActive]="['link-active']">
                     <a [routerLink]="['/home']">
                         <span class='glyphicon glyphicon-home'></span> Home
                     </a>
                 </li>
-                <li [routerLinkActive]="['link-active']">
+                <li [routerLinkActive]="['link-active']" *ngIf="!logged.logged">
                     <a [routerLink]="['/login']">
                         <span class='glyphicon glyphicon-log-in'></span> Login
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']" *ngIf="logged.logged">
+                    <a (click)="logOut()" style="cursor:pointer">
+                        <span class='glyphicon glyphicon-log-out'></span> Logout
                     </a>
                 </li>
                 <li [routerLinkActive]="['link-active']">
@@ -27,17 +32,17 @@
                         <span class='glyphicon glyphicon-th-list'></span> Library
                     </a>
                 </li>
-                <li [routerLinkActive]="['link-active']">
+                <li [routerLinkActive]="['link-active']" *ngIf="logged.asAdmin">
                     <a [routerLink]="['/users-data']">
                         <span class='glyphicon glyphicon-user'></span> Add users
                     </a>
                 </li>
-                <li [routerLinkActive]="['link-active']">
+                <li [routerLinkActive]="['link-active']" *ngIf="logged.asAdmin">
                     <a [routerLink]="['/books-data']">
                         <span class='glyphicon glyphicon-book'></span> Add book
                     </a>
                 </li>
-                <li [routerLinkActive]="['link-active']">
+                <li [routerLinkActive]="['link-active']" *ngIf="logged.asAdmin">
                     <a [routerLink]="['/statistics']">
                         <span class='glyphicon glyphicon-stats'></span> Statistics
                     </a>

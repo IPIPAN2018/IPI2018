@@ -1,7 +1,7 @@
 ﻿<hr />
 <div class="row">
     <div class="col-sm-6">
-        <h1>Title: </h1>
+        <h1>Title: {{selectedBook.title}}</h1>
         <select id="book" class="form-control" (change)="onBookChange()" [(ngModel)]="selectedBook" name="book">
             <option *ngFor="let b of books" [ngValue]="b">{{b.title}}</option>
         </select>
@@ -10,7 +10,7 @@
             <li><span class="glyphicon glyphicon-cd list-item-margin">Media: {{selectedBook.media}}</span> </li>
             <li><span class="glyphicon glyphicon-user list-item-margin">Author: {{selectedBook.author}}</span> </li>
             <li><span class="glyphicon glyphicon-ok list-item-margin">State: {{selectedBook.state}}</span> </li>
-            <li><button class="btn-info  btn-danger list-item-margin" (click)="changeState(selectedBook)"><span *ngIf="selectedBook.state">Borrow</span><span *ngIf="!selectedBook.state">Return</span></button></li>
+            <li><button class="btn-info  btn-danger list-item-margin" *ngIf="logged.logged" (click)="changeState(selectedBook)"><span *ngIf="selectedBook.state">Borrow</span><span *ngIf="!selectedBook.state">Return</span></button></li>
         </ul>
     </div>
     <div class="col-sm-6">

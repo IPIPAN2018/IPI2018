@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LibraryWeb.Model
@@ -14,6 +15,6 @@ namespace LibraryWeb.Model
         public string Media { get; set; }
         public string Author { get; set; }
         public bool State { get; set; }
-
+        public string RentedWhen { get; set; }
     }
 }

@@ -15,12 +15,14 @@ import { UsersDataComponent } from './components/users-data/users-data.component
 import { LoginComponent } from './components/login/login.component';
 import { LibraryComponent } from './components/library/library.component';
 import { DetailsComponent } from './components/details/details.component';
+//import { ChartModule } from 'angular-chart.js';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavMenuComponent,
         CounterComponent,
+        //ChartModule,
         FetchDataComponent,
         StatisticsComponent,
         BooksDataComponent,

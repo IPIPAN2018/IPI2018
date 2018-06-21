@@ -41,7 +41,8 @@ namespace LibraryWeb.Migrations
                     State = table.Column<bool>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     UserId = table.Column<long>(nullable: true),
-                    Year = table.Column<string>(nullable: true)
+                    Year = table.Column<string>(nullable: true),
+                    RentedWhen = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {

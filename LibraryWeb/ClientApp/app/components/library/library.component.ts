@@ -1,13 +1,17 @@
 ﻿import { Component, Inject, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { BookService } from '../app/services/book.service';
+import { DatePipe } from '@angular/common'
 import { getBaseUrl } from '../../app.browser.module';
+import { DetailsComponent } from '../details/details.component';
+import { UserService } from '../app/services/user.service';
 
 @Component({
     selector: 'app-library',
     templateUrl: './library.component.html',
     styleUrls: ['./library.component.css']
 })
+
 /** library component*/
 export class LibraryComponent implements OnInit {
     books;
@@ -15,10 +19,14 @@ export class LibraryComponent implements OnInit {
     filter: any = {};
     filterValue;
     filterType;
-   // public library: Library[];
+    public static bookSelection: any = {};
+    logged;
+    users;
+
+    // public library: Library[];
     /** library ctor */
 
-    constructor(private bookService: BookService, private http: Http) {
+    constructor(private bookService: BookService, private userService: UserService, private http: Http, public datepipe: DatePipe) {
 
     }
 
@@ -30,25 +38,60 @@ export class LibraryComponent implements OnInit {
 
     ngOnInit() {
         this.bookService.getBooks().subscribe(books => {
-            this.books = this.allBooks = books
+            this.books = this.allBooks = books;
+            this.userService.getUsers().subscribe(users => {
+                this.users = users;
+                this.logged = JSON.parse(sessionStorage.getItem('logged') || '{}');
+
+                //this.books.canReturn = users.filter(u => u.userId == this.logged.userId)[0].rentedBooks.filter(b => b.bookId == )
+            });
         });
+
     }
 
     onShowDetails(book) {
-        var opened_window = window.open(getBaseUrl() + "details");
-        
+        localStorage.setItem('selectedBook', JSON.stringify(book));
+        location.replace(getBaseUrl() + "details")
+        //window.open(getBaseUrl() + "details", );
     }
 
     changeState(book) {
-        book.state = !book.state;
+        var string;
 
-        this.bookService.update(book).subscribe(() => console.log("..."));
+        if (book.state)
+            string = "borrow"
+        else
+            string = "return"
+        
+        var user = this.users.filter(u => u.userId === this.logged.userId)[0];
+
+        if (confirm("Are you sure to " + string + " this position?")) {
+            book.state = !book.state;
+            if (!book.state) {
+                var date = Date.now();
+                let latest_date = this.datepipe.transform(date, 'yyyy-MM-dd');
+
+               // book.userId = this.logged.userId;
+
+                book.rentedWhen = latest_date;
+            }
+            else {
+                user.rentedBooks.filter(b => b.bookId == book.bookId)[0] = null;
+                
+                book.rentedWhen = null;
+            }
+
+
+            this.bookService.update(book).subscribe(() => console.log("..."));
+           // this.userService.update(user).subscribe(() => console.log("..."));
+
+        }
     }
 
     onFilterChange() {
         var books = this.allBooks;
 
-        if (this.filterValue != null && this.filterValue != "" ) {
+        if (this.filterValue != null && this.filterValue != "") {
             if (this.filterType == "title")
                 books = books.filter(v => v.title.includes(this.filterValue));
             else if (this.filterType == "author")

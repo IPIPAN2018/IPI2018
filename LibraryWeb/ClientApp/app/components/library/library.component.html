@@ -39,7 +39,7 @@
             <th>Author/Director/Performer</th>
             <th>State</th>
             <th>Details</th>
-            <th>Borrow/Return</th>
+            <th *ngIf="logged.logged">Borrow/Return</th>
         </tr>
     </thead>
     <tbody>
@@ -50,7 +50,7 @@
             <td>{{ book.author }}</td>
             <td>{{ book.state }}</td>
             <td><button class="btn-info  btn-danger" (click)="onShowDetails(book)">Show</button></td>
-            <td><button class="btn-info  btn-danger" (click)="changeState(book)"><span *ngIf="book.state">Borrow</span><span *ngIf="!book.state">Return</span></button></td>
+            <td><button class="btn-info  btn-danger" *ngIf="logged.logged" (click)="changeState(book)"><span *ngIf="book.state">Borrow</span><span *ngIf="!book.state">Return</span></button></td>
         </tr>
     </tbody>
 </table>
