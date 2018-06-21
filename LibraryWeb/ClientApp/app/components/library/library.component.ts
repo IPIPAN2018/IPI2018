@@ -14,6 +14,7 @@ export class LibraryComponent implements OnInit {
     allBooks;
     filter: any = {};
     filterValue;
+    filterType;
    // public library: Library[];
     /** library ctor */
 
@@ -47,8 +48,16 @@ export class LibraryComponent implements OnInit {
     onFilterChange() {
         var books = this.allBooks;
 
-        if (this.filterValue != null)
-            books = books.filter(v => v.title == this.filterValue);
+        if (this.filterValue != null && this.filterValue != "" ) {
+            if (this.filterType == "title")
+                books = books.filter(v => v.title.includes(this.filterValue));
+            else if (this.filterType == "author")
+                books = books.filter(v => v.author.includes(this.filterValue));
+            else if (this.filterType == "media")
+                books = books.filter(v => v.media.includes(this.filterValue));
+        }
+
+        this.books = books;
 
     }
 }

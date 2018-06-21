@@ -1,58 +1,38 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, OnInit, AfterViewInit, AfterContentInit } from '@angular/core';
+import { BookService } from '../app/services/book.service';
+import { Http } from '@angular/http';
 
 @Component({
     selector: 'app-statistics',
     templateUrl: './statistics.component.html',
     styleUrls: ['./statistics.component.css'],
 })
-/** statistics component*/
-export class StatisticsComponent {
-    /** statistics ctor */
-    //public barChartOptions: any = {
-    //    scaleShowVerticalLines: false,
-    //    responsive: true
-    //};
 
-    constructor() {
+export class StatisticsComponent implements OnInit {
+    books;
+    dvdOnly;
+    cdOnly;
+    booksOnly;
+    available;
+    notavailable;
+
+    constructor(private bookService: BookService, private http: Http) {
 
     }
 
-    //public barChartLabels: string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-    //public barChartType: string = 'bar';
-    //public barChartLegend: boolean = true;
+    ngOnInit() {
 
-    //public barChartData: any[] = [
-    //    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    //    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
-    //];
+        var all = this.books;
 
-    //// events
-    //public chartClicked(e: any): void {
-    //    console.log(e);
-    //}
-
-    //public chartHovered(e: any): void {
-    //    console.log(e);
-    //}
-
-    //public randomize(): void {
-    //    // Only Change 3 values
-    //    let data = [
-    //        Math.round(Math.random() * 100),
-    //        59,
-    //        80,
-    //        (Math.random() * 100),
-    //        56,
-    //        (Math.random() * 100),
-    //        40];
-    //    let clone = JSON.parse(JSON.stringify(this.barChartData));
-    //    clone[0].data = data;
-    //    this.barChartData = clone;
-    //    /**
-    //     * (My guess), for Angular to recognize the change in the dataset
-    //     * it has to change the dataset variable directly,
-    //     * so one way around it, is to clone the data, change it and then
-    //     * assign it;
-    //     */
-    //}
+        this.bookService.getBooks().subscribe(books => {
+            this.books = all = books;
+            this.dvdOnly = books.filter(v => v.media == "DVD");
+            this.cdOnly = books.filter(v => v.media == "CD");
+            this.booksOnly = books.filter(v => v.media == "Book");
+            this.available = books.filter(v => v.state == true);
+            this.notavailable = books.filter(v => v.state == false);
+        });
+    }
+        
+   
 }

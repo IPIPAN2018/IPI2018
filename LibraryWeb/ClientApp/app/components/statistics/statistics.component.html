@@ -16,16 +16,17 @@
 
 <div class="body-content">
     <ul>
-        <li><strong>Number of elements:</strong> </li>
-        <li><strong>Number of DVD elements:</strong> </li>
-        <li><strong>Number of CD elements:</strong> </li>
-        <li><strong>Number of book elements:</strong> </li>
-        <li><strong>Number of available elements:</strong> </li>
-        <li><strong>Number of not available elements:</strong> </li>
+        <li><strong>Number of elements:</strong> {{books?.length}} </li>
+        <li><strong>Number of DVD elements:</strong> {{dvdOnly?.length }}</li>
+        <li><strong>Number of CD elements:</strong> {{cdOnly?.length}} </li>
+        <li><strong>Number of book elements:</strong> {{ booksOnly?.length }}</li>
+        <li><strong>Number of available elements:</strong> {{ available?.length }} </li>
+        <li><strong>Number of not available elements:</strong> {{notavailable?.length}} </li>
     </ul>
 
+    <h4>Not available positions:</h4>
     <ul>
-        <li><strong>Title: </strong> - date: </li>
+        <li *ngFor="let na of notavailable"><strong>Title: </strong><i>{{na.title}}</i> - date: </li>
     </ul>
 </div>
 

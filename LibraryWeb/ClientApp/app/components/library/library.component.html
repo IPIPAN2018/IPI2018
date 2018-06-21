@@ -1,27 +1,27 @@
 ﻿<h1>Library</h1>
 
 <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-3 well gray-background">
         <span class="glyphicon glyphicon-search pull-right  "> </span>
-        <input type="text" class="form-control searchBox" id="search" name="search" placeholder="Search for..." [(ngModel)]="filterValue"  (change)="onFilterChange()">
+        <input type="text" class="form-control searchBox" id="search" name="search" placeholder="Search for..." [(ngModel)]="filterValue"  (keyup)="onFilterChange()">
     </div>
     <div class="col-sm-3">
         <ul class="list-unstyled">
             <li>
                 <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="lookIn" id="title" value="title" checked="" (change)="onFilterChange()" [(ngModel)]="filter.type">
+                    <input type="radio" class="form-check-input" name="lookIn" id="title" value="title" checked="" (change)="onFilterChange()" [(ngModel)]="filterType">
                     Title
                 </label>
             </li>
             <li>
                 <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="lookIn" id="author" value="author" (change)="onFilterChange()" [(ngModel)]="filter.type">
+                    <input type="radio" class="form-check-input" name="lookIn" id="author" value="author" (change)="onFilterChange()" [(ngModel)]="filterType">
                     Author / Director / Performer
                 </label>
             </li>
             <li>
                 <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="lookIn" id="media" value="media" (change)="onFilterChange()" [(ngModel)]="filter.type">
+                    <input type="radio" class="form-check-input" name="lookIn" id="media" value="media" (change)="onFilterChange()" [(ngModel)]="filterType">
                     Media
                 </label>
             </li>
@@ -54,3 +54,5 @@
         </tr>
     </tbody>
 </table>
+
+<h2>We have {{books.length}} position(s) for you!</h2> 
