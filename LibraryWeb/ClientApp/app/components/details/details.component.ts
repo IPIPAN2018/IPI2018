@@ -36,24 +36,32 @@ export class DetailsComponent implements OnInit {
         else
             string = "return"
 
+
         if (confirm("Are you sure to " + string + " this position?")) {
             book.state = !book.state;
             if (!book.state) {
                 var date = Date.now();
                 let latest_date = this.datepipe.transform(date, 'yyyy-MM-dd');
 
-                book.userId = this.logged.userId;
+                // book.userId = this.logged.userId;
 
                 book.rentedWhen = latest_date;
             }
             else {
-                book.userId = null;
+
+                //for (let b of book.rentedBooks) {
+                //    if (b.bookId === book.bookId) {
+                //        b.userId = null;
+                //        this.bookService.update(b).subscribe(() => console.log("..."));
+
+                //    }
+                //}
+
                 book.rentedWhen = null;
             }
 
-
-
             this.bookService.update(book).subscribe(() => console.log("..."));
+
         }
     }
 }

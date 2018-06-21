@@ -62,7 +62,7 @@ export class LibraryComponent implements OnInit {
             string = "borrow"
         else
             string = "return"
-        
+
         var user = this.users.filter(u => u.userId === this.logged.userId)[0];
 
         if (confirm("Are you sure to " + string + " this position?")) {
@@ -71,19 +71,17 @@ export class LibraryComponent implements OnInit {
                 var date = Date.now();
                 let latest_date = this.datepipe.transform(date, 'yyyy-MM-dd');
 
-               // book.userId = this.logged.userId;
+                // book.userId = this.logged.userId;
 
                 book.rentedWhen = latest_date;
             }
             else {
-                user.rentedBooks.filter(b => b.bookId == book.bookId)[0] = null;
-                
+
+
                 book.rentedWhen = null;
             }
 
-
             this.bookService.update(book).subscribe(() => console.log("..."));
-           // this.userService.update(user).subscribe(() => console.log("..."));
 
         }
     }
